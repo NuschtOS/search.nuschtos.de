@@ -77,6 +77,12 @@
                   name = "IfState.nix";
                   urlPrefix = "https://codeberg.org/m4rc3l/ifstate.nix/src/branch/main/";
                 }
+                # NixOS/nixpkgs
+                {
+                  optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
+                  name = "NixOS";
+                  urlPrefix = "https://github.com/NixOS/nixpkgs/tree/master/";
+                }
                 # nixos-apple-silicon
                 {
                   modules = [ nixos-apple-silicon.nixosModules.default ];
