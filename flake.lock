@@ -231,11 +231,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728343657,
-        "narHash": "sha256-ZDab/JvQCd1SjBhircwy/d61ifZCLq18z/HqxXPrDwE=",
+        "lastModified": 1729549835,
+        "narHash": "sha256-TS34a9/Jc/xM0kYWFLeSLewyPK6v0TNvMCQgRdzR5Ds=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "74c3fda68e38372df97c9c1888543bc630341c25",
+        "rev": "96cbd7e88dfc854bf7d25dcede9a33f2275406fd",
         "type": "github"
       },
       "original": {
