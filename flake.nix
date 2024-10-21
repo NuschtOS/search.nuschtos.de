@@ -2,17 +2,17 @@
   description = "Flake for search.nüschtos.de";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-compat.url = "github:nix-community/flake-compat";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    search = {
-      url = "github:NuschtOS/search";
+    nixos-apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
+        flake-compat.follows = "flake-compat";
       };
     };
     nixos-modules = {
@@ -23,16 +23,26 @@
         flake-utils.follows = "flake-utils";
       };
     };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
+        flake-compat.follows = "flake-compat";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
+        nuschtosSearch.follows = "search";
+      };
+    };
+    search = {
+      url = "github:NuschtOS/search";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
       };
     };
   };
 
-  outputs = { nixpkgs, flake-utils, home-manager, search, nixos-modules, nixvim, ... }:
+  outputs = { nixpkgs, flake-utils, home-manager, nixos-apple-silicon, nixos-modules, nixvim, search, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -44,6 +54,7 @@
           packages = {
             default = search.packages.${system}.mkMultiSearch {
               scopes = [
+                # home-manager
                 {
                   optionsJSON = home-manager.packages.${system}.docs-html.passthru.home-manager-options.nixos + /share/doc/nixos/options.json;
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
@@ -53,6 +64,13 @@
                   optionsPrefix = "home-manager.users.<name>";
                   urlPrefix = "https://github.com/nix-community/nixvim/tree/main/";
                 }
+                # nixos-apple-silicon
+                {
+
+                  modules = [ nixos-apple-silicon.nixosModules.default ];
+                  urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
+                }
+                # nixos-modules
                 {
                   modules = [
                     ({ config, lib, ... }: {
@@ -66,6 +84,7 @@
                   ];
                   urlPrefix = "https://github.com/NuschtOS/nixos-modules/tree/main/";
                 }
+                # nixvim
                 {
                   optionsJSON = nixvim.packages.${system}.options-json + /share/doc/nixos/options.json;
                   optionsPrefix = "programs.nixvim";
