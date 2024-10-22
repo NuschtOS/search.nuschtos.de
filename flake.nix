@@ -57,17 +57,19 @@
                 # home-manager
                 {
                   optionsJSON = home-manager.packages.${system}.docs-html.passthru.home-manager-options.nixos + /share/doc/nixos/options.json;
+                  title = "Home-Manager NixOS";
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
                 }
                 {
                   optionsJSON = home-manager.packages.${system}.docs-json + /share/doc/home-manager/options.json;
                   optionsPrefix = "home-manager.users.<name>";
+                  title = "Home-Manager";
                   urlPrefix = "https://github.com/nix-community/nixvim/tree/main/";
                 }
                 # nixos-apple-silicon
                 {
-
                   modules = [ nixos-apple-silicon.nixosModules.default ];
+                  title = "NixOS Apple Silicon";
                   urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
                 }
                 # nixos-modules
@@ -82,12 +84,14 @@
                     })
                     nixos-modules.nixosModule
                   ];
+                  title = "NixOS Modules";
                   urlPrefix = "https://github.com/NuschtOS/nixos-modules/tree/main/";
                 }
                 # nixvim
                 {
                   optionsJSON = nixvim.packages.${system}.options-json + /share/doc/nixos/options.json;
                   optionsPrefix = "programs.nixvim";
+                  title = "NixVim";
                   urlPrefix = "https://github.com/nix-community/nixvim/tree/main/";
                 }
               ];
