@@ -63,7 +63,7 @@
                 {
                   optionsJSON = home-manager.packages.${system}.docs-json + /share/doc/home-manager/options.json;
                   optionsPrefix = "home-manager.users.<name>";
-                  title = "Home-Manager";
+                  title = "Home Manager";
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
                 }
                 # nixos-apple-silicon
