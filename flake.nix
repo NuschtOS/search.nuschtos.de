@@ -57,7 +57,7 @@
                 # home-manager
                 {
                   optionsJSON = home-manager.packages.${system}.docs-html.passthru.home-manager-options.nixos + /share/doc/nixos/options.json;
-                  title = "Home-Manager NixOS";
+                  title = "Home Manager NixOS";
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
                 }
                 {
