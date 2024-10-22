@@ -84,14 +84,14 @@
                     })
                     nixos-modules.nixosModule
                   ];
-                  nmae = "NixOS Modules";
+                  name = "NixOS Modules";
                   urlPrefix = "https://github.com/NuschtOS/nixos-modules/tree/main/";
                 }
                 # nixvim
                 {
                   optionsJSON = nixvim.packages.${system}.options-json + /share/doc/nixos/options.json;
                   optionsPrefix = "programs.nixvim";
-                  title = "NixVim";
+                  name = "NixVim";
                   urlPrefix = "https://github.com/nix-community/nixvim/tree/main/";
                 }
               ];
