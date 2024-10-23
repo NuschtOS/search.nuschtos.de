@@ -147,6 +147,29 @@
         "type": "github"
       }
     },
+    "ifstate": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729429585,
+        "narHash": "sha256-6OjLSNRITXnSiQ+kErBkNNGWP7Ey+mj4t8E8+6wOwh4=",
+        "ref": "refs/heads/main",
+        "rev": "da7e2a71faa8aaaacc091bddf89a7f5743438134",
+        "revCount": 38,
+        "type": "git",
+        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
+      }
+    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -299,6 +322,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "ifstate": "ifstate",
         "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-modules": "nixos-modules",
         "nixpkgs": "nixpkgs",

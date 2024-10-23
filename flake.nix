@@ -8,6 +8,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ifstate = {
+      url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     nixos-apple-silicon = {
       url = "github:tpwrules/nixos-apple-silicon";
       inputs = {
@@ -42,7 +47,7 @@
     };
   };
 
-  outputs = { nixpkgs, flake-utils, home-manager, nixos-apple-silicon, nixos-modules, nixvim, search, ... }:
+  outputs = { nixpkgs, flake-utils, home-manager, ifstate, nixos-apple-silicon, nixos-modules, nixvim, search, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -65,6 +70,12 @@
                   optionsPrefix = "home-manager.users.<name>";
                   name = "Home Manager";
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
+                }
+                # ifstate.nix
+                {
+                  modules = [ ifstate.nixosModules.ifstate ];
+                  name = "IfState.nix";
+                  urlPrefix = "https://codeberg.org/m4rc3l/ifstate.nix/src/branch/main/";
                 }
                 # nixos-apple-silicon
                 {
