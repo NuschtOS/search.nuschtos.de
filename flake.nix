@@ -2,6 +2,10 @@
   description = "Flake for search.nüschtos.de";
 
   inputs = {
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-compat.url = "github:nix-community/flake-compat";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
@@ -47,7 +51,7 @@
     };
   };
 
-  outputs = { nixpkgs, flake-utils, home-manager, ifstate, nixos-apple-silicon, nixos-modules, nixvim, search, ... }:
+  outputs = { disko, flake-utils, home-manager, ifstate, nixos-apple-silicon, nixos-modules, nixpkgs, nixvim, search, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -59,6 +63,13 @@
           packages = {
             default = search.packages.${system}.mkMultiSearch {
               scopes = [
+                # disko
+                {
+                  modules = [ disko.nixosModules.default ];
+                  name = "Disko";
+                  specialArgs.modulesPath = nixpkgs + "/nixos/modules";
+                  urlPrefix = "https://github.com/nix-community/disko/blob/master/";
+                }
                 # home-manager
                 {
                   optionsJSON = home-manager.packages.${system}.docs-html.passthru.home-manager-options.nixos + /share/doc/nixos/options.json;
