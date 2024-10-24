@@ -41,6 +41,16 @@ jobs:
         with:
           path: result
 
+      - name: Publish to Cloudflare Pages
+        if: "github.repository_owner == 'NuschtOS'"
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 2a09613716e511a8fe8ca74abc084762
+          projectName: search-nuschtos-de
+          directory: result
+          gitHubToken: ${{ github.token }}
+
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
