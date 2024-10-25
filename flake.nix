@@ -55,6 +55,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-apple-silicon = {
       url = "github:tpwrules/nixos-apple-silicon";
       inputs = {
@@ -67,8 +71,8 @@
     nixos-modules = {
       url = "github:NuschtOS/nixos-modules";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
       };
     };
     nixos-wsl = {
@@ -85,8 +89,7 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         home-manager.follows = "home-manager";
-        # TODO: add after nix-darwin got added
-        # nix-darwin.follows = "nix-darwin";
+        nix-darwin.follows = "nix-darwin";
         nixpkgs.follows = "nixpkgs";
         nuschtosSearch.follows = "search";
         # https://github.com/nix-community/nixvim/blob/main/flake.nix#L12-L34
@@ -105,8 +108,8 @@
     search = {
       url = "github:NuschtOS/search";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
       };
     };
     simple-nixos-mailserver = {
@@ -133,7 +136,7 @@
     };
   };
 
-  outputs = { authentik, crowdsec, disko, flake-utils, home-manager, ifstate, lanzaboote, microvm, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
+  outputs = { authentik, crowdsec, disko, flake-utils, home-manager, ifstate, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -209,6 +212,18 @@
                   ];
                   name = "MicroVM.nix";
                   urlPrefix = "https://github.com/astro/microvm.nix/blob/main/";
+                }
+                # nix-darwin
+                {
+                  # basically https://github.com/LnL7/nix-darwin/blob/master/release.nix#L13-L14 without the hardcoded x86_64-darwin
+                  optionsJSON = (import nix-darwin {
+                    inherit nixpkgs;
+                    # source https://github.com/LnL7/nix-darwin/blob/master/release.nix#L76-L78
+                    configuration = { lib, config, ... }: { system.stateVersion = lib.mkDefault config.system.maxStateVersion; };
+                    system = "x86_64-linux";
+                  }).config.system.build.manual.optionsJSON + /share/doc/darwin/options.json;
+                  name = "nix-darwin";
+                  urlPrefix = "https://github.com/LnL7/nix-darwin/tree/master/";
                 }
                 # NixOS/nixpkgs
                 {
