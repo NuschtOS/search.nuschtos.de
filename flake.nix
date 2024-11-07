@@ -238,13 +238,7 @@
                 }
                 # nix-darwin
                 {
-                  # basically https://github.com/LnL7/nix-darwin/blob/master/release.nix#L13-L14 without the hardcoded x86_64-darwin
-                  optionsJSON = (import nix-darwin {
-                    inherit nixpkgs;
-                    # source https://github.com/LnL7/nix-darwin/blob/master/release.nix#L76-L78
-                    configuration = { lib, config, ... }: { system.stateVersion = lib.mkDefault config.system.maxStateVersion; };
-                    system = "x86_64-linux";
-                  }).config.system.build.manual.optionsJSON + /share/doc/darwin/options.json;
+                  optionsJSON = nix-darwin.packages.${system}.optionsJSON + /share/doc/darwin/options.json;
                   name = "nix-darwin";
                   urlPrefix = "https://github.com/LnL7/nix-darwin/tree/master/";
                 }
