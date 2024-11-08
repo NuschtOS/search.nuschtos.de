@@ -2,6 +2,14 @@
   description = "Flake for search.nüschtos.de";
 
   inputs = {
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        darwin.follows = "nix-darwin";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     authentik = {
       url = "github:nix-community/authentik-nix";
       inputs = {
@@ -37,6 +45,9 @@
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
+    };
+    impermanence = {
+      url = "github:nix-community/impermanence";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -136,7 +147,7 @@
     };
   };
 
-  outputs = { authentik, crowdsec, disko, flake-utils, home-manager, ifstate, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
+  outputs = { agenix, authentik, crowdsec, disko, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -149,6 +160,12 @@
           packages = {
             default = search.packages.${system}.mkMultiSearch {
               scopes = [
+                # agenix
+                {
+                  modules = [ agenix.nixosModules.default ];
+                  name = "agenix";
+                  urlPrefix = "https://github.com/ryantm/agenix/blob/main/";
+                }
                 # authentik
                 {
                   modules = [
@@ -192,6 +209,12 @@
                   modules = [ ifstate.nixosModules.default ];
                   name = "IfState.nix";
                   urlPrefix = "https://codeberg.org/m4rc3l/ifstate.nix/src/branch/main/";
+                }
+                # impermanence
+                {
+                  modules = [ impermanence.nixosModules.default ];
+                  name = "impermanence";
+                  urlPrefix = "https://github.com/nix-community/impermanence/blob/master/";
                 }
                 # lanzaboote
                 {
