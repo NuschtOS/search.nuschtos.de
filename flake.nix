@@ -93,7 +93,6 @@
       url = "github:nix-community/NixOS-WSL";
       inputs = {
         flake-compat.follows = "";
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -131,15 +130,12 @@
       inputs = {
         flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-24_05.follows = "nixpkgs";
+        nixpkgs-24_11.follows = "nixpkgs";
       };
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-stable.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     tsnsrv = {
       url = "github:boinkor-net/tsnsrv";
@@ -261,7 +257,7 @@
                 {
                   modules = [
                     { _module.args = { inherit pkgs; }; }
-                  ] ++ lib.filter (x: (builtins.tryEval(x)).success) (lib.attrValues nixos-hardware.nixosModules);
+                  ] ++ lib.filter (x: (builtins.tryEval (x)).success) (lib.attrValues nixos-hardware.nixosModules);
                   name = "nixos-hardware";
                   specialArgs.modulesPath = pkgs.path + "/nixos/modules";
                   urlPrefix = "https://github.com/NixOS/nixos-hardware/blob/master/";
