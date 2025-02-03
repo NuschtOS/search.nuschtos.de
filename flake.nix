@@ -20,7 +20,7 @@
       };
     };
     crowdsec = {
-      url = "https://codeberg.org/kampka/nix-flake-crowdsec/archive/main.zip";
+      url = "https://codeberg.org/kampka/nix-flake-crowdsec/archive/main.tar.gz";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";

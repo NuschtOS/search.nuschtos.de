@@ -124,7 +124,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://codeberg.org/kampka/nix-flake-crowdsec/archive/main.zip"
+        "url": "https://codeberg.org/kampka/nix-flake-crowdsec/archive/main.tar.gz"
       }
     },
     "disko": {
