@@ -116,11 +116,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741195753,
-        "narHash": "sha256-EYME6JRSz/6MmyBYSS6fx6Ivqoqu/uDZBbyI4VrxF7w=",
-        "rev": "6e29e3574d56f8397cda8794564ccff4d0cf25ee",
+        "lastModified": 1742920128,
+        "narHash": "sha256-VPjnjtAksihLezhc+ZmnqGu18mHr4QVKa1kSZQ8rJL4=",
+        "rev": "40e937689d318ee85b1d9763189a65e6f0b4028d",
         "type": "tarball",
-        "url": "https://codeberg.org/api/v1/repos/kampka/nix-flake-crowdsec/archive/6e29e3574d56f8397cda8794564ccff4d0cf25ee.tar.gz"
+        "url": "https://codeberg.org/api/v1/repos/kampka/nix-flake-crowdsec/archive/40e937689d318ee85b1d9763189a65e6f0b4028d.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -215,11 +215,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738796460,
-        "narHash": "sha256-H/QaN2r73oUmiA9UzMe6/V5TeGnZFryh0BbEaCDmllY=",
+        "lastModified": 1743069429,
+        "narHash": "sha256-f77m2AJBreZf/QrGJQ4hIrxtIUTQG8XmEmovQppzBmI=",
         "ref": "refs/heads/main",
-        "rev": "f2987a6762c29dd7b8efa9bd218c213b1d8b7ea3",
-        "revCount": 57,
+        "rev": "682d6422969b02fff4e35f926d83de18ea7cf408",
+        "revCount": 59,
         "type": "git",
         "url": "https://codeberg.org/m4rc3l/ifstate.nix"
       },
@@ -355,11 +355,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742741935,
-        "narHash": "sha256-ZCNvPYWkL9hxzgWn1gmYCZItqBU4ujsWjwWNpcwCjfQ=",
+        "lastModified": 1744224272,
+        "narHash": "sha256-cqePj5nuC7flJWNncaVAFq1YZncU0PSyO0DEqGn+vYc=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "ebb88c3428dcdd95c06dca4d49b9791a65ab777b",
+        "rev": "113883e37d985d26ecb65282766e5719f2539103",
         "type": "github"
       },
       "original": {
