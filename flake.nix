@@ -8,9 +8,10 @@
         darwin.follows = "nix-darwin";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
+        systems.follows = "authentik-nix/systems";
       };
     };
-    authentik = {
+    authentik-nix = {
       url = "github:nix-community/authentik-nix";
       inputs = {
         flake-compat.follows = "";
@@ -34,7 +35,10 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "authentik-nix/systems";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,7 +79,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
-        rust-overlay.follows = "rust-overlay";
       };
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -100,6 +103,7 @@
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         nuschtosSearch.follows = "search";
+        systems.follows = "authentik-nix/systems";
       };
     };
     rust-overlay = {
@@ -120,7 +124,6 @@
       inputs = {
         flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-24_11.follows = "nixpkgs";
       };
     };
     sops-nix = {
@@ -136,7 +139,7 @@
     };
   };
 
-  outputs = { agenix, authentik, crowdsec, disko, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
+  outputs = { agenix, authentik-nix, crowdsec, disko, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -158,7 +161,7 @@
                 # authentik
                 {
                   modules = [
-                    authentik.nixosModules.default
+                    authentik-nix.nixosModules.default
                     { _module.args = { inherit pkgs; }; }
                   ];
                   name = "authentik-nix";
