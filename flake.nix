@@ -208,7 +208,7 @@
                 {
                   modules = [
                     dn42-nix.nixosModules.default
-                    { networking.dn42.addr.v4 = "0.0.0.0"; }
+                    { networking.dn42.addr.v4 = "192.0.2.1"; }
                   ];
                   name = "dn42.nix";
                   urlPrefix = "https://github.com/NuschtOS/dn42.nix/blob/main/";
