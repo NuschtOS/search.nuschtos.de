@@ -20,6 +20,13 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    bird-nix = {
+      url = "github:NuschtOS/bird.nix";
+      inputs = {
+        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     crowdsec = {
       url = "https://codeberg.org/kampka/nix-flake-crowdsec/archive/main.tar.gz";
       inputs = {
@@ -30,6 +37,13 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dn42-nix = {
+      url = "github:NuschtOS/dn42.nix";
+      inputs = {
+        bird.follows = "bird-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -139,7 +153,7 @@
     };
   };
 
-  outputs = { agenix, authentik-nix, crowdsec, disko, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
+  outputs = { agenix, authentik-nix, bird-nix, crowdsec, disko, dn42-nix, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -167,6 +181,12 @@
                   name = "authentik-nix";
                   urlPrefix = "https://github.com/nix-community/authentik-nix/blob/main/";
                 }
+                # bird.nix
+                {
+                  modules = [ bird-nix.nixosModules.default ];
+                  name = "bird.nix";
+                  urlPrefix = "https://github.com/NuschtOS/bird.nix/blob/main/";
+                }
                 # crowdsec
                 {
                   modules = [
@@ -183,6 +203,15 @@
                   name = "disko";
                   specialArgs.modulesPath = nixpkgs + "/nixos/modules";
                   urlPrefix = "https://github.com/nix-community/disko/blob/master/";
+                }
+                # dn42.nix
+                {
+                  modules = [
+                    dn42-nix.nixosModules.default
+                    { networking.dn42.addr.v4 = "0.0.0.0"; }
+                  ];
+                  name = "dn42.nix";
+                  urlPrefix = "https://github.com/NuschtOS/dn42.nix/blob/main/";
                 }
                 # home-manager
                 {

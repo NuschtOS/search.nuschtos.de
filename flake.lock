@@ -80,6 +80,29 @@
         "type": "github"
       }
     },
+    "bird-nix": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748286409,
+        "narHash": "sha256-G0kEqS7f1Qb2EBuQPIiTQfx85+NB3me3XTqQI8zdDs4=",
+        "owner": "NuschtOS",
+        "repo": "bird.nix",
+        "rev": "07e79e7893513b4f88e08eb3718ad1aac2eeef4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NuschtOS",
+        "repo": "bird.nix",
+        "type": "github"
+      }
+    },
     "blobs": {
       "flake": false,
       "locked": {
@@ -149,6 +172,29 @@
       "original": {
         "owner": "nix-community",
         "repo": "disko",
+        "type": "github"
+      }
+    },
+    "dn42-nix": {
+      "inputs": {
+        "bird": [
+          "bird-nix"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748287256,
+        "narHash": "sha256-egii43XNflU2BOrALjGev9cNki7ZXlqVJTbh/t8OQq0=",
+        "owner": "NuschtOS",
+        "repo": "dn42.nix",
+        "rev": "f2a17c20119decbe335c390844a103b41519b57a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NuschtOS",
+        "repo": "dn42.nix",
         "type": "github"
       }
     },
@@ -620,8 +666,10 @@
       "inputs": {
         "agenix": "agenix",
         "authentik-nix": "authentik-nix",
+        "bird-nix": "bird-nix",
         "crowdsec": "crowdsec",
         "disko": "disko",
+        "dn42-nix": "dn42-nix",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
