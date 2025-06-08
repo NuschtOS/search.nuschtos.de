@@ -516,11 +516,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749399494,
-        "narHash": "sha256-qjP/EAmg/AztSzqscVqO0/KkL8mYFNd3Fe6T/b14aaA=",
+        "lastModified": 1749418765,
+        "narHash": "sha256-RQsBdvjLj/4/31/MF8l31Y23GJbQ2dpp3UA2rEuSvKg=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "019563ba918c447d5c00f25ad99aa9e9467be8a7",
+        "rev": "e985abf369157ea3e1ebc37c887b02a4dfae438f",
         "type": "github"
       },
       "original": {
@@ -722,11 +722,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748298102,
-        "narHash": "sha256-PP11GVwUt7F4ZZi5A5+99isuq39C59CKc5u5yVisU/U=",
+        "lastModified": 1749419246,
+        "narHash": "sha256-rQctLGA1kF8B/wLIe7TTy+mQk23/zkkKzy/dr3nCAvE=",
         "owner": "NuschtOS",
         "repo": "search",
-        "rev": "f8a1c221afb8b4c642ed11ac5ee6746b0fe1d32f",
+        "rev": "b8a5bb93097d5a5f51c2ca136d1fe33e06188f31",
         "type": "github"
       },
       "original": {
