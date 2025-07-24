@@ -78,14 +78,14 @@
       };
     };
     microvm = {
-      url = "github:astro/microvm.nix";
+      url = "github:microvm-nix/microvm.nix";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-apple-silicon = {
@@ -138,6 +138,7 @@
       inputs = {
         flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
+        nixpkgs-25_05.follows = "nixpkgs";
       };
     };
     sops-nix = {
@@ -254,13 +255,13 @@
                     { _module.args = { inherit pkgs; }; }
                   ];
                   name = "MicroVM.nix";
-                  urlPrefix = "https://github.com/astro/microvm.nix/blob/main/";
+                  urlPrefix = "https://github.com/microvm-nix/microvm.nix/blob/main/";
                 }
                 # nix-darwin
                 {
                   optionsJSON = nix-darwin.packages.${system}.optionsJSON + /share/doc/darwin/options.json;
                   name = "nix-darwin";
-                  urlPrefix = "https://github.com/LnL7/nix-darwin/tree/master/";
+                  urlPrefix = "https://github.com/nix-darwin/nix-darwin/tree/master/";
                 }
                 # NixOS/nixpkgs
                 {
