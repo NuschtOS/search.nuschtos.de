@@ -309,7 +309,7 @@
                     nixos-wsl.nixosModules.default
                     { _module.args = { inherit pkgs; }; }
                   ];
-                  name = "Nixos-WSL";
+                  name = "NixOS WSL";
                   urlPrefix = "https://github.com/nix-community/NixOS-WSL/blob/main/";
                 }
                 # nixvim
