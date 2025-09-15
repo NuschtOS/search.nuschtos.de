@@ -27,13 +27,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    crowdsec = {
-      url = "https://codeberg.org/kampka/nix-flake-crowdsec/archive/main.tar.gz";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -154,7 +147,7 @@
     };
   };
 
-  outputs = { agenix, authentik-nix, bird-nix, crowdsec, disko, dn42-nix, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
+  outputs = { agenix, authentik-nix, bird-nix, disko, dn42-nix, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -187,16 +180,6 @@
                   modules = [ bird-nix.nixosModules.default ];
                   name = "bird.nix";
                   urlPrefix = "https://github.com/NuschtOS/bird.nix/blob/main/";
-                }
-                # crowdsec
-                {
-                  modules = [
-                    crowdsec.nixosModules.crowdsec
-                    crowdsec.nixosModules.crowdsec-firewall-bouncer
-                    { _module.args = { inherit pkgs; }; }
-                  ];
-                  name = "crowdsec";
-                  urlPrefix = "https://codeberg.org/kampka/nix-flake-crowdsec/src/branch/main/";
                 }
                 # disko
                 {

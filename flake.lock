@@ -134,27 +134,6 @@
         "type": "github"
       }
     },
-    "crowdsec": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1752497357,
-        "narHash": "sha256-9epXn1+T6U4Kfyw8B9zMzbERxDB3VfaPXhVebtai6CE=",
-        "rev": "84db7dcea77f7f477d79e69e35fb0bb560232667",
-        "type": "tarball",
-        "url": "https://codeberg.org/api/v1/repos/kampka/nix-flake-crowdsec/archive/84db7dcea77f7f477d79e69e35fb0bb560232667.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://codeberg.org/kampka/nix-flake-crowdsec/archive/main.tar.gz"
-      }
-    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -652,7 +631,6 @@
         "agenix": "agenix",
         "authentik-nix": "authentik-nix",
         "bird-nix": "bird-nix",
-        "crowdsec": "crowdsec",
         "disko": "disko",
         "dn42-nix": "dn42-nix",
         "flake-parts": "flake-parts",
