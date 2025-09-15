@@ -281,7 +281,7 @@
                     {
                       _module.args = { inherit pkgs; };
 
-                      hardware.rockchip.platformFirmware = pkgs.hello; # fake that the package is missing on stable
+                      hardware.rockchip.platformFirmware = lib.mkForce pkgs.hello; # fake that the package is missing on stable
                     }
                   ] ++ lib.filter (x: (builtins.tryEval (x)).success) (lib.attrValues nixos-hardware.nixosModules);
                   name = "nixos-hardware";
