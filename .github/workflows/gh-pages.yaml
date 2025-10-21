@@ -4,6 +4,8 @@ on:
     branches:
       - main
   pull_request:
+  schedule:
+    - cron: "42 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,6 +35,10 @@ jobs:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
           restore-prefixes-first-match: nix-${{ runner.os }}-
 
+      - name: Update inputs
+        if: github.event_name == 'schedule'
+        run: nix flake update
+
       - name: Build search
         run: nix build -L
 
@@ -59,4 +65,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        if: github.event_name == 'push'
+        if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
