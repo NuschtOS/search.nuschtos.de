@@ -249,7 +249,7 @@
                 # NixOS/nixpkgs
                 {
                   optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
-                  name = "NixOS";
+                  name = "NixOS unstable";
                   urlPrefix = "https://github.com/NixOS/nixpkgs/tree/master/";
                 }
                 # nixos-apple-silicon
