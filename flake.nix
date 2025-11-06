@@ -50,13 +50,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ifstate = {
-      url = "git+https://codeberg.org/m4rc3l/ifstate.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -147,7 +140,7 @@
     };
   };
 
-  outputs = { agenix, authentik-nix, bird-nix, disko, dn42-nix, flake-utils, home-manager, ifstate, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
+  outputs = { agenix, authentik-nix, bird-nix, disko, dn42-nix, flake-utils, home-manager, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -208,12 +201,6 @@
                   optionsPrefix = "home-manager.users.<name>";
                   name = "Home Manager";
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
-                }
-                # ifstate.nix
-                {
-                  modules = [ ifstate.nixosModules.default ];
-                  name = "IfState.nix";
-                  urlPrefix = "https://codeberg.org/m4rc3l/ifstate.nix/src/branch/main/";
                 }
                 # impermanence
                 {

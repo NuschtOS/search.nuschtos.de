@@ -286,29 +286,6 @@
         "type": "github"
       }
     },
-    "ifstate": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1759129644,
-        "narHash": "sha256-3duO5hEU/Oukmht68K5iNU7SfFmG14q9elXLXfthCXM=",
-        "ref": "refs/heads/main",
-        "rev": "c8a5a5cb81f57d5289bfa4f41924b91edca6ec00",
-        "revCount": 72,
-        "type": "git",
-        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://codeberg.org/m4rc3l/ifstate.nix"
-      }
-    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -635,7 +612,6 @@
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "ifstate": "ifstate",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "microvm": "microvm",
