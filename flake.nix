@@ -96,7 +96,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nuschtos/nuschtpkgs/nixos-unstable";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
@@ -238,6 +238,12 @@
                   optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
                   name = "NixOS unstable";
                   urlPrefix = "https://github.com/NixOS/nixpkgs/tree/master/";
+                  pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
+                    (import ${nixpkgs}) {
+                      system = "x86_64-linux";
+                      config.allowBroken = true;
+                    }
+                  '';
                 }
                 # nixos-apple-silicon
                 {
