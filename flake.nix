@@ -124,7 +124,6 @@
       inputs = {
         flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
-        nixpkgs-25_05.follows = "nixpkgs";
       };
     };
     sops-nix = {
