@@ -119,6 +119,26 @@
         "type": "gitlab"
       }
     },
+    "comin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763588299,
+        "narHash": "sha256-VaIEjtFYAx2QMjKLmgCFWmGKUXlLDAOtIm0aeVPuAUY=",
+        "owner": "nlewo",
+        "repo": "comin",
+        "rev": "b57811c588ed2bcf519b62e5e7215daac6c25ddc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nlewo",
+        "repo": "comin",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1762538466,
@@ -607,6 +627,7 @@
         "agenix": "agenix",
         "authentik-nix": "authentik-nix",
         "bird-nix": "bird-nix",
+        "comin": "comin",
         "disko": "disko",
         "dn42-nix": "dn42-nix",
         "flake-parts": "flake-parts",
