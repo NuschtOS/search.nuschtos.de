@@ -27,6 +27,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,10 +60,8 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs = {
-        flake-compat.follows = "";
-        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        pre-commit-hooks-nix.follows = "";
+        pre-commit.follows = "";
         rust-overlay.follows = "rust-overlay";
       };
     };
@@ -139,7 +141,7 @@
     };
   };
 
-  outputs = { agenix, authentik-nix, bird-nix, disko, dn42-nix, flake-utils, home-manager, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
+  outputs = { agenix, authentik-nix, bird-nix, comin, disko, dn42-nix, flake-utils, home-manager, impermanence, lanzaboote, microvm, nix-darwin, nixos-apple-silicon, nixos-hardware, nixos-modules, nixos-wsl, nixpkgs, nixvim, search, simple-nixos-mailserver, sops-nix, tsnsrv, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -172,6 +174,12 @@
                   modules = [ bird-nix.nixosModules.default ];
                   name = "bird.nix";
                   urlPrefix = "https://github.com/NuschtOS/bird.nix/blob/main/";
+                }
+                # comin
+                {
+                  modules = [ comin.nixosModules.comin ];
+                  name = "comin";
+                  urlPrefix = "https://github.com/nlewo/comin/blob/main/";
                 }
                 # disko
                 {
