@@ -229,7 +229,6 @@
                   modules = [
                     microvm.nixosModules.host
                     microvm.nixosModules.microvm
-                    { _module.args = { inherit pkgs; }; }
                   ];
                   name = "MicroVM.nix";
                   urlPrefix = "https://github.com/microvm-nix/microvm.nix/blob/main/";
