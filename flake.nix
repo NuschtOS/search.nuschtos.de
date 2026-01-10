@@ -29,7 +29,10 @@
     };
     comin = {
       url = "github:nlewo/comin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        flake-compat.follows = "";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     disko = {
       url = "github:nix-community/disko";
@@ -56,6 +59,10 @@
     };
     impermanence = {
       url = "github:nix-community/impermanence";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -68,7 +75,6 @@
     microvm = {
       url = "github:microvm-nix/microvm.nix";
       inputs = {
-        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -104,7 +110,6 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        nuschtosSearch.follows = "search";
         systems.follows = "authentik-nix/systems";
       };
     };
