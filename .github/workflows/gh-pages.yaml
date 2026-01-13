@@ -27,6 +27,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Make some space
+        uses: wimpysworld/nothing-but-nix@v6
+
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@v34
 
