@@ -28,7 +28,11 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Make some space
-        uses: wimpysworld/nothing-but-nix@v6
+        # TODO: switch back to a release, when https://github.com/wimpysworld/nothing-but-nix/pull/25 is in one
+        uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: 'carve'  # keep npx for cloudflare upload
+          nix-permission-edict: true  # required for nix-quick-install-action
 
       - name: Install Nix
         uses: nixbuild/nix-quick-install-action@v34
