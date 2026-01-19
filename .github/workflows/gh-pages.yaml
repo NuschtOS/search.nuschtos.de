@@ -34,13 +34,8 @@ jobs:
           hatchet-protocol: 'carve'  # keep npx for cloudflare upload
           nix-permission-edict: true  # required for nix-quick-install-action
 
-      - name: Install Nix
-        uses: nixbuild/nix-quick-install-action@v34
-
-      - uses: nix-community/cache-nix-action@v6
-        with:
-          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-          restore-prefixes-first-match: nix-${{ runner.os }}-
+      - uses: cachix/install-nix-action@v31
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
 
       - name: Update inputs
         if: github.event_name == 'schedule'
