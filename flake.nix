@@ -228,6 +228,9 @@
                   ];
                   name = "Lanzaboote";
                   urlPrefix = "https://github.com/nix-community/lanzaboote/blob/master/";
+                  pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
+                    (builtins.getFlake "${lanzaboote.outPath}").packages.x86_64-linux
+                  '';
                 }
                 # microvm.nix
                 {
@@ -257,11 +260,11 @@
                   '';
                 }
                 # nixos-apple-silicon
-                {
-                  modules = [ nixos-apple-silicon.nixosModules.default ];
-                  name = "NixOS Apple Silicon";
-                  urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
-                }
+                # {
+                #   modules = [ nixos-apple-silicon.nixosModules.default ];
+                #   name = "NixOS Apple Silicon";
+                #   urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
+                # }
                 # nixos-hardware
                 {
                   modules = [
