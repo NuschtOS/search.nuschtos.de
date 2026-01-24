@@ -228,6 +228,7 @@
                   ];
                   name = "Lanzaboote";
                   urlPrefix = "https://github.com/nix-community/lanzaboote/blob/master/";
+                  # requires --impure
                   pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
                     (builtins.getFlake "${lanzaboote.outPath}").packages.x86_64-linux
                   '';
@@ -260,6 +261,7 @@
                   '';
                 }
                 # nixos-apple-silicon
+                # tries to load files from /boot with --impure
                 # {
                 #   modules = [ nixos-apple-silicon.nixosModules.default ];
                 #   name = "NixOS Apple Silicon";
