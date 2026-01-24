@@ -230,7 +230,7 @@
                   urlPrefix = "https://github.com/nix-community/lanzaboote/blob/master/";
                   # requires --impure
                   pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
-                    (builtins.getFlake "${lanzaboote.outPath}").packages.x86_64-linux
+                    (builtins.getFlake "${lanzaboote.outPath}?narHash=${(builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.lanzaboote.locked.narHash}").packages.x86_64-linux
                   '';
                 }
                 # microvm.nix
