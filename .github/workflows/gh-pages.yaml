@@ -47,7 +47,7 @@ jobs:
         run: nix flake update
 
       - name: Build search
-        run: nix build -L --impure
+        run: nix build -L
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

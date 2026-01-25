@@ -228,10 +228,7 @@
                   ];
                   name = "Lanzaboote";
                   urlPrefix = "https://github.com/nix-community/lanzaboote/blob/master/";
-                  # requires --impure
-                  pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
-                    (builtins.getFlake "${lanzaboote.outPath}?narHash=${(builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.lanzaboote.locked.narHash}").packages.x86_64-linux
-                  '';
+                  pkgs = lanzaboote.packages.x86_64-linux;
                 }
                 # microvm.nix
                 {
@@ -253,20 +250,22 @@
                   optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
                   name = "NixOS unstable";
                   urlPrefix = "https://github.com/NixOS/nixpkgs/tree/master/";
-                  pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
-                    (import ${nixpkgs}) {
-                      system = "x86_64-linux";
-                      config.allowBroken = true;
-                    }
-                  '';
+                  packagesJsons = search.packages.${system}.mkPackagesJSONs {
+                    name = "nixpkgs-packages.json";
+                    pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
+                      (import ${nixpkgs}) {
+                        system = "x86_64-linux";
+                        config.allowBroken = true;
+                      }
+                    '';
+                  };
                 }
                 # nixos-apple-silicon
-                # tries to load files from /boot with --impure
-                # {
-                #   modules = [ nixos-apple-silicon.nixosModules.default ];
-                #   name = "NixOS Apple Silicon";
-                #   urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
-                # }
+                {
+                  modules = [ nixos-apple-silicon.nixosModules.default ];
+                  name = "NixOS Apple Silicon";
+                  urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
+                }
                 # nixos-hardware
                 {
                   modules = [
