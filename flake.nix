@@ -104,7 +104,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nuschtos/nuschtpkgs/nixos-unstable";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
@@ -120,7 +120,7 @@
       };
     };
     search = {
-      url = "github:NuschtOS/search";
+      url = "github:NuschtOS/search/packages";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
@@ -163,6 +163,7 @@
                 {
                   modules = [ agenix.nixosModules.default ];
                   name = "agenix";
+                  pkgs = agenix.packages.${system};
                   urlPrefix = "https://github.com/ryantm/agenix/blob/main/";
                 }
                 # authentik
@@ -172,6 +173,7 @@
                     { _module.args = { inherit pkgs; }; }
                   ];
                   name = "authentik-nix";
+                  pkgs = authentik-nix.packages.${system};
                   urlPrefix = "https://github.com/nix-community/authentik-nix/blob/main/";
                 }
                 # bird.nix
@@ -184,12 +186,14 @@
                 {
                   modules = [ comin.nixosModules.comin ];
                   name = "comin";
+                  pkgs = comin.packages.${system};
                   urlPrefix = "https://github.com/nlewo/comin/blob/main/";
                 }
                 # disko
                 {
                   modules = [ disko.nixosModules.default ];
                   name = "disko";
+                  pkgs = disko.packages.${system};
                   specialArgs.modulesPath = nixpkgs + "/nixos/modules";
                   urlPrefix = "https://github.com/nix-community/disko/blob/master/";
                 }
@@ -200,18 +204,21 @@
                     { networking.dn42.addr.v4 = "192.0.2.1"; }
                   ];
                   name = "dn42.nix";
+                  pkgs = dn42-nix.packages.${system};
                   urlPrefix = "https://github.com/NuschtOS/dn42.nix/blob/main/";
                 }
                 # home-manager
                 {
                   optionsJSON = home-manager.packages.${system}.docs-html.passthru.home-manager-options.nixos + /share/doc/nixos/options.json;
                   name = "Home Manager NixOS";
+                  pkgs = dn42-nix.packages.${system};
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
                 }
                 {
                   optionsJSON = home-manager.packages.${system}.docs-json + /share/doc/home-manager/options.json;
                   optionsPrefix = "home-manager.users.<name>";
                   name = "Home Manager";
+                  pkgs = dn42-nix.packages.${system};
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
                 }
                 # impermanence
@@ -227,6 +234,7 @@
                     { _module.args = { inherit pkgs; }; }
                   ];
                   name = "Lanzaboote";
+                  pkgs = lanzaboote.packages.${system};
                   urlPrefix = "https://github.com/nix-community/lanzaboote/blob/master/";
                 }
                 # microvm.nix
@@ -236,12 +244,14 @@
                     microvm.nixosModules.microvm
                   ];
                   name = "MicroVM.nix";
+                  pkgs = microvm.packages.${system};
                   urlPrefix = "https://github.com/microvm-nix/microvm.nix/blob/main/";
                 }
                 # nix-darwin
                 {
                   optionsJSON = nix-darwin.packages.${system}.optionsJSON + /share/doc/darwin/options.json;
                   name = "nix-darwin";
+                  pkgs = nix-darwin.packages.${system};
                   urlPrefix = "https://github.com/nix-darwin/nix-darwin/tree/master/";
                 }
                 # NixOS/nixpkgs
@@ -249,11 +259,21 @@
                   optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
                   name = "NixOS unstable";
                   urlPrefix = "https://github.com/NixOS/nixpkgs/tree/master/";
+                  packagesJsons = search.packages.${system}.mkPackagesJSONs {
+                    name = "nixpkgs-packages.json";
+                    pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
+                      (import ${nixpkgs}) {
+                        system = "x86_64-linux";
+                        config.allowBroken = true;
+                      }
+                    '';
+                  };
                 }
                 # nixos-apple-silicon
                 {
                   modules = [ nixos-apple-silicon.nixosModules.default ];
                   name = "NixOS Apple Silicon";
+                  pkgs = nixos-apple-silicon.packages.${system};
                   urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
                 }
                 # nixos-hardware
@@ -266,6 +286,7 @@
                     }
                   ] ++ lib.filter (x: (builtins.tryEval (x)).success) (lib.attrValues nixos-hardware.nixosModules);
                   name = "nixos-hardware";
+                  pkgs = nixos-hardware.packages.${system};
                   specialArgs.modulesPath = pkgs.path + "/nixos/modules";
                   urlPrefix = "https://github.com/NixOS/nixos-hardware/blob/master/";
                 }
@@ -291,6 +312,7 @@
                     { _module.args = { inherit pkgs; }; }
                   ];
                   name = "NixOS WSL";
+                  pkgs = nixos-wsl.packages.${system};
                   urlPrefix = "https://github.com/nix-community/NixOS-WSL/blob/main/";
                 }
                 # nixvim
@@ -298,6 +320,7 @@
                   optionsJSON = nixvim.packages.${system}.options-json + /share/doc/nixos/options.json;
                   optionsPrefix = "programs.nixvim";
                   name = "NixVim";
+                  pkgs = nixvim.packages.${system};
                   urlPrefix = "https://github.com/nix-community/nixvim/tree/main/";
                 }
                 # simple-nixos-mailserver
@@ -317,12 +340,14 @@
                     }
                   ];
                   name = "simple-nixos-mailserver";
+                  pkgs = simple-nixos-mailserver.packages.${system};
                   urlPrefix = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/blob/master/";
                 }
                 # sops-nix
                 {
                   modules = [ sops-nix.nixosModules.default ];
                   name = "sops-nix";
+                  pkgs = sops-nix.packages.${system};
                   urlPrefix = "https://github.com/Mic92/sops-nix/blob/master/";
                 }
                 # tsnsrv
@@ -332,6 +357,7 @@
                     { _module.args = { inherit pkgs; }; }
                   ];
                   name = "tsnsrv";
+                  pkgs = tsnsrv.packages.${system};
                   urlPrefix = "https://github.com/boinkor-net/tsnsrv/blob/main/";
                 }
               ];
