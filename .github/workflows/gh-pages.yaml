@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Make some space
         # TODO: switch back to a release, when https://github.com/wimpysworld/nothing-but-nix/pull/25 is in one
