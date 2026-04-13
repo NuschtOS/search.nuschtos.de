@@ -32,6 +32,7 @@
       inputs = {
         flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
+        treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
       };
     };
     disko = {
