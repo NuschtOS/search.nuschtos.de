@@ -32,6 +32,7 @@
       inputs = {
         flake-compat.follows = "";
         nixpkgs.follows = "nixpkgs";
+        treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
       };
     };
     disko = {
@@ -259,15 +260,18 @@
                   name = "NixOS unstable";
                   urlPrefix = "https://github.com/NixOS/nixpkgs/tree/master/";
                   optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
-                  pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
-                    (import ${nixpkgs}) {
-                      system = "${pkgs.stdenv.hostPlatform.system}";
-                      config = {
-                        allowBroken = true;
-                        allowSrcEvalForDrvMeta = true;
-                      };
-                    }
-                  '';
+                  packagesJSONs = search.packages.${system}.mkPackagesJSONs {
+                    name = "nixpkgs";
+                    pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
+                      (import ${nixpkgs}) {
+                        system = "${pkgs.stdenv.hostPlatform.system}";
+                        config = {
+                          allowBroken = true;
+                          allowSrcEvalForDrvMeta = true;
+                        };
+                      }
+                    '';
+                  };
                 }
                 # nixos-apple-silicon
                 {
