@@ -256,18 +256,18 @@
                 }
                 # NixOS/nixpkgs
                 {
-                  optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
                   name = "NixOS unstable";
                   urlPrefix = "https://github.com/NixOS/nixpkgs/tree/master/";
-                  packagesJsons = search.packages.${system}.mkPackagesJSONs {
-                    name = "nixpkgs-packages.json";
-                    pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
-                      (import ${nixpkgs}) {
-                        system = "x86_64-linux";
-                        config.allowBroken = true;
-                      }
-                    '';
-                  };
+                  optionsJSON = (import "${nixpkgs}/nixos/release.nix" { }).options + /share/doc/nixos/options.json;
+                  pkgs = pkgs.writeText "pkgs.nix" /* nix */ ''
+                    (import ${nixpkgs}) {
+                      system = "${pkgs.stdenv.hostPlatform.system}";
+                      config = {
+                        allowBroken = true;
+                        allowSrcEvalForDrvMeta = true;
+                      };
+                    }
+                  '';
                 }
                 # nixos-apple-silicon
                 {
