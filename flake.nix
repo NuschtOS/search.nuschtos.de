@@ -90,7 +90,12 @@
         flake-compat.follows = "";
       };
     };
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     nixos-modules = {
       url = "github:NuschtOS/nixos-modules";
       inputs = {
