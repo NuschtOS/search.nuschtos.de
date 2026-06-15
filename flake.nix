@@ -126,7 +126,7 @@
       };
     };
     search = {
-      url = "github:NuschtOS/search/packages";
+      url = "github:NuschtOS/search";
       inputs = {
         flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
