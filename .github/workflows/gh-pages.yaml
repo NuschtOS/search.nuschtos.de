@@ -35,7 +35,7 @@ jobs:
           nix-permission-edict: true  # required for nix-quick-install-action
 
       - uses: cachix/install-nix-action@v31
-      - uses: DeterminateSystems/magic-nix-cache-action@v13
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
 
       - name: Update inputs
         if: github.event_name == 'schedule'
@@ -45,7 +45,7 @@ jobs:
         run: nix build -L
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: result
 
