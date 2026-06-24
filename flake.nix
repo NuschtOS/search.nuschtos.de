@@ -215,7 +215,7 @@
                 }
                 # home-manager
                 {
-                  optionsJSON = home-manager.packages.${system}.docs-html.passthru.home-manager-options.nixos + /share/doc/nixos/options.json;
+                  optionsJSON = home-manager.packages.${system}.docs-html.passthru.home-manager-options.nixos.json + /share/doc/nixos/options.json;
                   name = "Home Manager NixOS";
                   pkgs = dn42-nix.packages.${system};
                   urlPrefix = "https://github.com/nix-community/home-manager/tree/master/";
