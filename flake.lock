@@ -524,18 +524,19 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1786274789,
-        "narHash": "sha256-inOmEipykMUNBDCklGNCde0c9fESV5dyy4NcJwyogBg=",
-        "owner": "nuschtos",
-        "repo": "nuschtpkgs",
-        "rev": "443ba89fdea8326fca249fbffecdf5e6e8861792",
-        "type": "github"
+        "lastModified": 1787781941,
+        "narHash": "sha256-ackOrUFcapvWRIye0ZMxP6J6MSJuMBkocC7ru3Jq9y0=",
+        "ref": "backports-26.05",
+        "rev": "24624f511b6d6a224fdd25b21ea1535b673519b7",
+        "shallow": true,
+        "type": "git",
+        "url": "https://elbforge.org/NuschtOS/nuschtpkgs.git"
       },
       "original": {
-        "owner": "nuschtos",
-        "ref": "nixos-unstable",
-        "repo": "nuschtpkgs",
-        "type": "github"
+        "ref": "backports-26.05",
+        "shallow": true,
+        "type": "git",
+        "url": "https://elbforge.org/NuschtOS/nuschtpkgs.git"
       }
     },
     "nixvim": {
