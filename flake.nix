@@ -110,7 +110,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    nixpkgs.url = "github:nuschtos/nuschtpkgs/nixos-unstable";
+    nixpkgs.url = "git+https://elbforge.org/NuschtOS/nuschtpkgs.git?ref=backports-26.05&shallow=1";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
