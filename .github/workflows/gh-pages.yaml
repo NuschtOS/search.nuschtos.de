@@ -36,7 +36,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@v14
 
       - name: Update inputs
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: nix flake update
 
       - name: Build search
