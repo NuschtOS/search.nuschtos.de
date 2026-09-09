@@ -27,11 +27,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Make some space
-        uses: wimpysworld/nothing-but-nix@v10
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
         with:
-          hatchet-protocol: 'carve'  # keep npx for cloudflare upload
-          nix-permission-edict: true  # required for nix-quick-install-action
+          swap-size-gb: 20
 
       - uses: cachix/install-nix-action@v31
       - uses: DeterminateSystems/magic-nix-cache-action@v14
