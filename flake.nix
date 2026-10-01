@@ -4,12 +4,7 @@
   inputs = {
     agenix = {
       url = "github:ryantm/agenix";
-      inputs = {
-        darwin.follows = "nix-darwin";
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "authentik-nix/systems";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     authentik-nix = {
       url = "github:nix-community/authentik-nix";
