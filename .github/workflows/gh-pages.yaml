@@ -33,7 +33,7 @@ jobs:
           swap-size-gb: 20
 
       - uses: cachix/install-nix-action@v31
-      - uses: DeterminateSystems/magic-nix-cache-action@v14
+      - uses: DeterminateSystems/magic-nix-cache-action@v15
 
       - name: Update inputs
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
