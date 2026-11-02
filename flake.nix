@@ -275,7 +275,13 @@
                 }
                 # nixos-apple-silicon
                 {
-                  modules = [ nixos-apple-silicon.nixosModules.default ];
+                  modules = [
+                    nixos-apple-silicon.nixosModules.default
+                    {
+                      _module.args = { inherit pkgs; };
+                      hardware.asahi.enable = true;
+                    }
+                  ];
                   name = "NixOS Apple Silicon";
                   pkgs = nixos-apple-silicon.packages.${system};
                   urlPrefix = "https://github.com/tpwrules/nixos-apple-silicon/blob/main/";
